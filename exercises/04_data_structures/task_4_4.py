@@ -24,3 +24,11 @@ for vlan in vlans:
 uniq_vlans2.sort()
 print(uniq_vlans)
 print(uniq_vlans2)
+
+#тем более, что без циклов решение намного короче
+#Все отлично, только тут еще нельзя использовать циклы и условия
+
+#вариант решения
+vlans = [10, 20, 30, 1, 2, 100, 10, 30, 3, 4, 10]
+result = sorted(set(vlans))
+print(result)

@@ -26,3 +26,4 @@ for vlan in vlans3:
 		result2.append(vlan)
 print(result2)
 		
+#Все отлично
