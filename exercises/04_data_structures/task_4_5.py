@@ -25,4 +25,4 @@ for vlan in vlans3:
 	if vlan in vlans4:
 		result2.append(vlan)
 print(result2)
-		
+

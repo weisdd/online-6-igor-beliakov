@@ -19,3 +19,14 @@
 '''
 
 ip = '192.168.3.1'
+octets = ip.split('.')
+octets[0] = int(octets[0])
+octets[1] = int(octets[1])
+octets[2] = int(octets[2])
+octets[3] = int(octets[3])
+
+template = '''
+{0:<10} {1:<10} {2:<10} {3:<10}
+{0:010b} {1:010b} {2:010b} {3:010b}
+'''
+print(template.format(octets[0], octets[1], octets[2], octets[3]))

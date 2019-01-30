@@ -10,3 +10,10 @@
 '''
 
 mac = 'AAAA:BBBB:CCCC'
+mac = mac.replace(':', '')
+
+# Solution 1
+print(bin(int(mac, 16))[2:])
+
+# Solution 2
+print('{:b}'.format(int(mac,16)))
