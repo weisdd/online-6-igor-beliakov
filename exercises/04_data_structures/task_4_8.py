@@ -21,8 +21,19 @@
 ip = '192.168.3.1'
 octets = [ int(octet) for octet in ip.split('.') ]
 
+# Solution 1
 template = '''
-{0:<10} {1:<10} {2:<10} {3:<10}
-{0:010b} {1:010b} {2:010b} {3:010b}
+{0:<10}{1:<10}{2:<10}{3:<10}
+{0:08b}  {1:08b}  {2:08b}  {3:08b}
 '''
 print(template.format(octets[0], octets[1], octets[2], octets[3]))
+
+# Solution 2
+octets_bin = [ bin(octet)[2:].zfill(8) for octet in octets ]
+
+template2 = '''
+{0:<10}{1:<10}{2:<10}{3:<10}
+{4:10}{5:10}{6:10}{7:10}
+'''
+print(template.format(octets[0], octets[1], octets[2], octets[3], 
+	octets_bin[0], octets_bin[1], octets_bin[2], octets_bin[3]))
