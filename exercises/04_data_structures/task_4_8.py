@@ -37,3 +37,15 @@ template2 = '''
 '''
 print(template.format(octets[0], octets[1], octets[2], octets[3], 
 	octets_bin[0], octets_bin[1], octets_bin[2], octets_bin[3]))
+
+#Все отлично
+
+#вариант решения
+ip = '192.168.3.1'
+oct1, oct2, oct3, oct4 = [int(i) for i in ip.split('.')]
+
+output = '''
+{0:<10}{1:<10}{2:<10}{3:<10}
+{0:08b}  {1:08b}  {2:08b}  {3:08b}'''
+
+print(output.format(oct1, oct2, oct3, oct4))
