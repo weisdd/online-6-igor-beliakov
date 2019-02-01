@@ -67,3 +67,6 @@ vlans = input('Введите номер влан(ов): ').strip()
 
 print('\ninterface ' + interface)
 print('\n'.join(templates[port_type]).format(vlans))
+
+#Все отлично
+

@@ -43,3 +43,6 @@ Mask:
 
 print(template.format(octets[0], octets[1], octets[2], octets[3],
 	mask_octets[0], mask_octets[1], mask_octets[2], mask_octets[3]))
+
+#Все отлично
+

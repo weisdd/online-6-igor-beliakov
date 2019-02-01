@@ -49,3 +49,12 @@ available_parameters = ', '.join(list(london_co[name].keys()))
 
 parameter = input('Введите имя параметра (' + available_parameters + '): ').strip().lower()
 print(london_co[name].get(parameter, 'Такого параметра нет'))
+
+#Все отлично
+
+#вариант решения
+device = input('Введите имя устройства: ')
+params = ', '.join(london_co[device].keys())
+parameter = str.lower(input('Введите имя параметра ({}): '.format(params)))
+
+print(london_co[device].get(parameter, 'Такого параметра нет'))

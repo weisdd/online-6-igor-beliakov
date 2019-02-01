@@ -49,3 +49,6 @@ london_co = {
 
 name = input('Введите имя устройства: ').strip()
 print(london_co.get(name))
+
+#Все отлично
+
