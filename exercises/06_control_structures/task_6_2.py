@@ -14,3 +14,17 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+
+ip = input('Введите IP-адрес: ').strip()
+first_byte = int(ip[:ip.index('.')])
+
+if first_byte in range(1,128):
+	print('unicast')
+elif first_byte in range(224,240):
+	print('multicast')
+elif ip == '255.255.255.255':
+	print('local broadcast')
+elif ip == '0.0.0.0':
+	print('unassigned')
+else:
+	print('unused')
