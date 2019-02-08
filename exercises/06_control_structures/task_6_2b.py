@@ -38,3 +38,30 @@ while correct_octets_counter != 4:
 		print('unassigned')
 	else:
 		print('unused')
+
+#Все отлично
+
+#вариант решения
+while True:
+    ip_address = input('Введите адрес: ')
+    ip_list = ip_address.split('.')
+
+    correct_octets = [int(octet) for octet in ip_list
+                      if octet.isdigit() and 0 <= int(octet) <= 255]
+    ip_correct = len(ip_list) == 4 and len(correct_octets) == 4
+    if ip_correct:
+        break
+    print('Incorrect IPv4 address')
+
+first_octet = correct_octets[0]
+
+if 1 <= first_octet <= 223 :
+    print('unicast')
+elif 224 <= first_octet <= 239 :
+    print('multicast')
+elif ip_address == '0.0.0.0':
+    print('unassigend')
+elif ip_address == '255.255.255.255':
+    print ('local broadcast')
+else:
+    print('unused')

@@ -28,3 +28,5 @@ elif ip == '0.0.0.0':
 	print('unassigned')
 else:
 	print('unused')
+
+#Все отлично

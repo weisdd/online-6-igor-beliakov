@@ -44,3 +44,58 @@ if len(octets) == 4:
 		print('Неправильный IP-адрес')
 else:
 	print('Неправильный IP-адрес')
+
+#Все отлично
+
+#вариант решения
+ip_address = input('Enter ip address: ')
+octets = ip_address.split('.')
+correct_ip = True
+
+if len(octets) != 4:
+    correct_ip = False
+else:
+    for octet in octets:
+        if not (octet.isdigit() and int(octet) in range(256)):
+            correct_ip = False
+            break
+
+if not correct_ip:
+    print('Incorrect IPv4 address')
+else:
+    octets_num = [int(i) for i in octets]
+
+    if octets_num[0] in range(1,224):
+        print('unicast')
+    elif octets_num[0] in range(224,240):
+        print('multicast')
+    elif set(octets_num) == {255}:
+        print('broadcast')
+    elif set(octets_num) == {0}:
+        print('unassigned')
+    else:
+        print('unused')
+
+
+################################################
+# Вариант с проверкой list comprehensions
+ip_address = input('Введите IP-адрес в десятично-точечном формате: ')
+ip_bytes = ip_address.split('.')
+
+correct = [b for b in ip_bytes if b.isdigit() and 0 <= int(b) <= 255]
+
+if len(correct) != 4 or len(ip_bytes) != 4:
+    print('Неправильный IP-адрес')
+else:
+    ip = [int(i) for i in ip_bytes]
+
+    if ip == [0, 0, 0, 0]:
+        print('unassigned')
+    elif ip == [255, 255, 255, 255]:
+        print('local broadcast')
+    elif 1 <= ip[0] <= 223:
+        print('unicast')
+    elif 224 <= ip[0] <= 239:
+        print('multicast')
+    else:
+        print('unused')

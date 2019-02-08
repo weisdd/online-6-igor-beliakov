@@ -68,3 +68,22 @@ for intf, instructions in fast_int['trunk'].items():
                 print(' {} {} {}'.format(command, 'remove', ','.join(vlans)))
         else:
             print(' {}'.format(command))
+
+#Все отлично
+
+#вариант решения
+#Этот вариант использует словарь, вместо if/else
+trunk_actions = {'add': 'add',
+                 'del': 'remove',
+                 'only': ''}
+
+for intf, value in fast_int['trunk'].items():
+    print('interface FastEthernet {}'.format(intf))
+
+    for command in trunk_template:
+        if command.endswith('allowed vlan'):
+            action = value[0]
+            vlans = ','.join(value[1:])
+            print(' {} {} {}'.format(command, trunk_actions[action], vlans))
+        else:
+            print(' {}'.format(command))
