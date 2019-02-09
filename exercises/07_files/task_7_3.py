@@ -17,3 +17,9 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 '''
+
+with open('CAM_table.txt') as f:
+	for line in f:
+		if line.strip() == '' or not line.split()[0].isdigit(): continue
+		vlan_id, mac, _, port = line.split()
+		print('{}\t{}\t{}'.format(vlan_id, mac, port))

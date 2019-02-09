@@ -14,3 +14,17 @@
 '''
 
 ignore = ['duplex', 'alias', 'Current configuration']
+
+from sys import argv
+
+filename_source = argv[1]
+filename_destination = 'config_sw1_cleared.txt'
+
+with open(filename_source, 'r') as f_s, open(filename_destination, 'w') as f_d:
+	for line in f_s:
+		ignore_flag = 0
+		for pattern in ignore:
+			if pattern in line:
+				ignore_flag = 1
+				break
+		if not ignore_flag: f_d.write(line)

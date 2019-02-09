@@ -13,3 +13,19 @@
 '''
 
 ignore = ['duplex', 'alias', 'Current configuration']
+
+from sys import argv
+
+filename = argv[1]
+
+with open(filename, 'r') as f:
+	for line in f:
+		if line.startswith('!'):
+			continue
+		ignore_flag = 0
+		for pattern in ignore:
+			if pattern in line:
+				ignore_flag = 1
+				break
+		if not ignore_flag:
+			print(line, end='')
