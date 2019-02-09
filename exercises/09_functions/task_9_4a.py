@@ -54,3 +54,29 @@ def ignore_command(command, ignore):
     '''
     return any(word in command for word in ignore)
 
+
+def convert_config_to_dict(config_filename):
+  result = {}
+  with open(config_filename, 'r') as f:
+    command = subcommand = ''
+    for line in f:
+      if ignore_command(line, ignore) or line.strip() == '' : continue
+      if not line.startswith('!'):
+        if not line.startswith(' '):
+          command = line.strip()
+          result.setdefault(command, [])
+        elif line.startswith(' ') and not line.startswith('  '):
+          subcommand = line.strip()
+          result[command].append(subcommand)
+        elif line.startswith('  '):
+          if type(result[command]) == list:
+            temp_dict = {key: [] for key in result[command]}
+            del(result[command])
+            result[command] = temp_dict
+          result.setdefault(command, {})
+          result[command].setdefault(subcommand, [])
+          result[command][subcommand].append(line.strip())
+      else:
+        command = subcommand = ''
+  return result
+

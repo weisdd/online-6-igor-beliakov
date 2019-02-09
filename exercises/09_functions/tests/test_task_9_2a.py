@@ -16,13 +16,13 @@ def test_function_params():
 
 
 def test_function_return_value(trunk_vlans_mapping, template_trunk_mode):
-    correct_return_value = {'interface FastEthernet0/1': ['switchport mode trunk',
+    correct_return_value = {'FastEthernet0/1': ['switchport mode trunk',
                                                           'switchport trunk native vlan 999',
                                                           'switchport trunk allowed vlan 10,20,30'],
-                            'interface FastEthernet0/2': ['switchport mode trunk',
+                            'FastEthernet0/2': ['switchport mode trunk',
                                                           'switchport trunk native vlan 999',
                                                           'switchport trunk allowed vlan 11,30'],
-                            'interface FastEthernet0/4': ['switchport mode trunk',
+                            'FastEthernet0/4': ['switchport mode trunk',
                                                           'switchport trunk native vlan 999',
                                                           'switchport trunk allowed vlan 17']}
 

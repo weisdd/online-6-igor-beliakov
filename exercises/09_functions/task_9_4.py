@@ -35,3 +35,21 @@ def ignore_command(command, ignore):
     * False - если нет
     '''
     return any(word in command for word in ignore)
+
+
+def convert_config_to_dict(config_filename):
+	result = {}
+	with open(config_filename, 'r') as f:
+		command = ''
+		for line in f:
+			if ignore_command(line, ignore) or line.strip() == '' : continue
+			if not line.startswith('!'):
+				if not line.startswith(' '):
+					command = line.strip()
+					result.setdefault(command, [])
+				else:
+					result[command].append(line.strip())
+			else:
+				command = ''
+	return result
+
