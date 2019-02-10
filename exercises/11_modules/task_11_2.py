@@ -41,3 +41,22 @@ Cгенерировать топологию, которая соответст�
 
 '''
 
+from task_11_1 import parse_cdp_neighbors
+from draw_network_graph import draw_topology
+from sys import argv
+
+def create_network_map(filenames):
+	full_topology = {}
+	result = {}
+	for filename in filenames:
+		with open(filename, 'r') as f:
+			full_topology.update(parse_cdp_neighbors(f.read()))
+	# В result записываем только уникальные элементы
+	for key, value in full_topology.items():
+	    if result.get(key) == value or result.get(value) == key:
+	    	continue
+	    else:
+	    	result[key] = value
+	draw_topology(result, output_filename='task_11_2a_topology_my')
+	return result
+
