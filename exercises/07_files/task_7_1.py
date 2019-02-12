@@ -29,3 +29,6 @@ with open('ospf.txt', 'r') as f:
 		_, prefix, ad_metric, _, next_hop, last_update, interface = line.split()
 		ad_metric = ad_metric.strip('[]')
 		print(template.format(prefix=prefix, ad_metric=ad_metric, next_hop=next_hop, last_update=last_update, interface=interface))
+
+#Все отлично
+

@@ -30,3 +30,6 @@ with open(filename_source, 'r') as f_s, open(filename_destination, 'w') as f_d:
 				ignore_flag = 1
 				break
 		if not ignore_flag: f_d.write(line)
+
+#Все отлично
+

@@ -32,3 +32,15 @@ if vlan_id in cam_table:
 			print('{}\t{}\t{}'.format(vlan_id, mac, port))
 else:
 	print('Такого VLAN нет в базе')
+
+#Все отлично
+
+#вариант решения
+user_vlan = input('Enter VLAN number: ')
+
+with open('CAM_table.txt', 'r') as conf:
+    for line in conf:
+        line = line.split()
+        if line and line[0].isdigit() and line[0] == user_vlan:
+            vlan, mac, _, intf = line
+            print('{:9}{:20}{}'.format(vlan, mac, intf))

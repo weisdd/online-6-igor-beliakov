@@ -22,3 +22,12 @@ with open(filename, 'r') as f:
 		if line.startswith('!'):
 			continue
 		print(line, end='')
+
+#Все отлично
+
+#вариант решения
+with open(filename) as f:
+    for line in f:
+        if not line.startswith('!'):
+            print(line.rstrip())
+

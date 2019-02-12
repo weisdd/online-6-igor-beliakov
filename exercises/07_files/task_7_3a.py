@@ -39,3 +39,18 @@ for vlan_id in sorted(cam_table, key=int):
 	for port in cam_table[vlan_id]:
 		for mac in cam_table[vlan_id][port]:
 			print('{}\t{}\t{}'.format(vlan_id, mac, port))
+
+#Все отлично
+
+#вариант решения
+mac_table = []
+
+with open('CAM_table.txt', 'r') as conf:
+    for line in conf:
+        line = line.split()
+        if line and line[0].isdigit():
+            vlan, mac, _, intf = line
+            mac_table.append([int(vlan), mac, intf])
+
+for vlan, mac, intf in sorted(mac_table):
+    print('{:<9}{:20}{}'.format(vlan, mac, intf))

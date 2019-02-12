@@ -23,3 +23,14 @@ with open('CAM_table.txt') as f:
 		if line.strip() == '' or not line.split()[0].isdigit(): continue
 		vlan_id, mac, _, port = line.split()
 		print('{}\t{}\t{}'.format(vlan_id, mac, port))
+
+#Все отлично
+
+#вариант решения
+with open('CAM_table.txt', 'r') as conf:
+    for line in conf:
+        line = line.split()
+        if line and line[0].isdigit():
+            vlan, mac, _, interface = line
+            print('{:9}{:20}{}'.format(vlan, mac, interface))
+

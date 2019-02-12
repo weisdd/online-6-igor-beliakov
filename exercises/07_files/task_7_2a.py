@@ -29,3 +29,24 @@ with open(filename, 'r') as f:
 				break
 		if not ignore_flag:
 			print(line, end='')
+
+#Все отлично
+
+#вариант решения
+with open(filename) as f:
+    for line in f:
+        skip_line = False
+        for ignore_word in ignore:
+            if ignore_word in line:
+                skip_line = True
+                break
+        if not line.startswith('!') and not skip_line:
+            print(line.rstrip())
+
+
+#Вариант с генератором списка
+with open(filename) as f:
+    for line in f:
+        ignore_line = True in [word in line for word in ignore]
+        if not line.startswith('!') and not ignore_line:
+            print(line.rstrip())
