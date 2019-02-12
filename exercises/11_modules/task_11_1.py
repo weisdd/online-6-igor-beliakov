@@ -28,3 +28,22 @@ R6           Fa 0/2          143           R S I           2811       Fa 0/0
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
 
+
+def parse_cdp_neighbors(command_output):
+	cdp = command_output.strip().split('\n')
+	l_hostname = cdp[0].split('>')[0] # '#' в качестве возможного разделителя не учитываем. 
+	cdp_data_flag = 0 # Начались строки с данными о соседях
+	result = {}
+	for line in cdp:
+		if line.startswith('Device ID'):
+			cdp_data_flag = 1
+			continue
+		# Пропускаем все строки до таблицы с нужными нам данные + пустые строки
+		if not cdp_data_flag or line.strip() == '': continue
+		neighbor = line.split()
+		n_hostname = neighbor[0]
+		l_intf = neighbor[1] + neighbor[2]
+		n_intf = neighbor[-2] + neighbor[-1]
+		result[(l_hostname, l_intf)] = (n_hostname, n_intf)
+	return result
+
