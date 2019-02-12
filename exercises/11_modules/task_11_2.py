@@ -60,3 +60,26 @@ def create_network_map(filenames):
 	draw_topology(result, output_filename='task_11_2a_topology_my')
 	return result
 
+#Все отлично
+
+#вариант решения
+def create_network_map(filenames):
+    network_map = {}
+
+    for filename in filenames:
+        with open(filename) as show_command:
+            parsed = parse_cdp_neighbors(show_command.read())
+            for box, neighbor in parsed.items():
+                if not neighbor in network_map:
+                    network_map[box] = neighbor
+    return network_map
+
+if __name__ == "__main__":
+    infiles = ['sh_cdp_n_sw1.txt',
+               'sh_cdp_n_r1.txt',
+               'sh_cdp_n_r2.txt',
+               'sh_cdp_n_r3.txt']
+
+    topology = create_network_map(infiles)
+    pprint(topology)
+    draw_topology(topology)
