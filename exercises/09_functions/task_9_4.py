@@ -53,3 +53,20 @@ def convert_config_to_dict(config_filename):
 				command = ''
 	return result
 
+#Все отлично
+
+#вариант решения
+def config_to_dict(config):
+    config_dict = {}
+    with open(config) as f:
+        for line in f:
+            line = line.rstrip()
+            if line and not (line.startswith('!') or ignore_command(line, ignore)):
+                if line[0].isalnum():
+                    section = line
+                    config_dict[section] = []
+                else:
+                    config_dict[section].append(line)
+    return config_dict
+
+print(config_to_dict('config_sw1.txt'))

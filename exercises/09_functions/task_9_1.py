@@ -74,3 +74,6 @@ def generate_access_config(intf_vlan_mapping, access_template):
             else:
                 result.append(command)
     return result
+
+#Все отлично
+

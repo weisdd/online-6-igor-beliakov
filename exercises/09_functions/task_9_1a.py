@@ -62,3 +62,6 @@ def generate_access_config(intf_vlan_mapping, access_template, psecurity = None)
         if psecurity: result.extend(psecurity)
 
     return result
+
+#Все отлично
+

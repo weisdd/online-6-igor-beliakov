@@ -57,3 +57,5 @@ def generate_trunk_config(intf_vlan_mapping, trunk_template):
 				result.append(command)
 	return result
 
+
+#Все отлично

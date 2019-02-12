@@ -90,3 +90,30 @@ def convert_config_to_dict(config_filename):
         command = subcommand = ''
   return result
 
+#Все отлично
+
+#вариант решения
+def convert_config_to_dict(config_filename):
+    result = {}
+
+    with open(config_filename) as f:
+        for line in f:
+            line = line.rstrip()
+
+            if line and not ('!' in line or ignore_command(line, ignore)):
+                if not line.startswith(' '):
+                    level_1 = line
+                    result[level_1] = []
+                elif line.startswith(' ') and line[1] != ' ':
+                    line = line.lstrip()
+                    last_level_2 = line
+                    result[level_1].append(line)
+                else:
+                    #если команда 3 уровня встретилась первый раз,
+                    #результатом будет список
+                    if type(result[level_1]) is list:
+                        result[level_1] = {key:[] for key in result[level_1]}
+                    result[level_1][last_level_2].append(line.lstrip())
+
+    return result
+
