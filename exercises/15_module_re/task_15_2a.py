@@ -25,3 +25,21 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+
+import task_15_2
+import re
+from sys import argv
+import pprint
+
+
+def convert_to_dict(headers, lines):
+	result = []
+	for line in lines:
+		result.append(dict(zip(headers, line)))
+	return result
+
+
+if __name__ == '__main__':
+	headers = ['interface', 'status', 'protocol', 'address']
+	pprint.pprint(convert_to_dict(headers, task_15_2.parse_sh_ip_int_br(argv[1])))
+
