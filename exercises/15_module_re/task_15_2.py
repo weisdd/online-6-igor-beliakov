@@ -21,3 +21,20 @@
 Проверить работу функции на примере файла sh_ip_int_br.txt.
 
 '''
+
+
+from sys import argv
+import pprint
+import re
+
+
+def parse_sh_ip_int_br(filename):
+	with open(filename, 'r') as f:
+		content = f.read()
+		regex = re.compile(r'(\S+)\s+(unassigned|\d+\.\d+\.\d+\.\d+)\s+.+((?:administratively )+down|up)\s+(up|down)')
+	return regex.findall(content)
+
+
+if __name__ == '__main__':
+	pprint.pprint(parse_sh_ip_int_br(argv[1]))
+
