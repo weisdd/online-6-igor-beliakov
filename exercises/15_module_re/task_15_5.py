@@ -43,3 +43,5 @@ def generate_description_from_cdp(filename):
 if __name__ == '__main__':
 	pprint.pprint(generate_description_from_cdp(argv[1]))
 	
+# Все отлично
+

@@ -28,19 +28,30 @@ import pprint
 from sys import argv
 
 def get_ip_from_cfg(filename):
-	result = {}
-	regex = r'interface (?P<interface>\S+)| ip address (?P<ip>\S+) (?P<mask>\S+)'
-	with open(filename) as f:
-		for line in f:
-			match = re.search(regex, line)
-			if match:
-				if match.lastgroup == 'interface':
-					interface = match.group('interface')
-				else:
-					result[interface] = match.group('ip', 'mask')
-	return result
+    result = {}
+    regex = r'interface (?P<interface>\S+)| ip address (?P<ip>\S+) (?P<mask>\S+)'
+    with open(filename) as f:
+        for line in f:
+            match = re.search(regex, line)
+            if match:
+                if match.lastgroup == 'interface':
+                    interface = match.group('interface')
+                else:
+                    result[interface] = match.group('ip', 'mask')
+    return result
 
 
 if __name__ == '__main__':
     pprint.pprint(get_ip_from_cfg(argv[1]))
 
+# Все отлично
+
+# вариант решения
+def get_ip_from_cfg(config):
+    with open(config) as f:
+        match = re.finditer(r'interface (?P<intf>\S+)\n'
+                            r'( .*\n)*'
+                            r' ip address (?P<ip>\S+) (?P<mask>\S+)', f.read())
+
+    result = {m.group('intf'): m.group('ip','mask') for m in match}
+    return result

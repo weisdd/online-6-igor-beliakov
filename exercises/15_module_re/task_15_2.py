@@ -38,3 +38,5 @@ def parse_sh_ip_int_br(filename):
 if __name__ == '__main__':
 	pprint.pprint(parse_sh_ip_int_br(argv[1]))
 
+# Все отлично
+

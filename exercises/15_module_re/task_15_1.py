@@ -37,3 +37,5 @@ def get_ip_from_cfg(filename):
 if __name__ == '__main__':
     print(get_ip_from_cfg(argv[1]))
 
+# Все отлично
+

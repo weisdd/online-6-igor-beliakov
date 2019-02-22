@@ -43,3 +43,9 @@ if __name__ == '__main__':
 	headers = ['interface', 'status', 'protocol', 'address']
 	pprint.pprint(convert_to_dict(headers, task_15_2.parse_sh_ip_int_br(argv[1])))
 
+# Все отлично
+
+# вариант решения
+def convert_to_dict(headers, sh_list):
+    return [dict(zip(headers,i)) for i in sh_list]
+

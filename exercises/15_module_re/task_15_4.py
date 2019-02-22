@@ -40,3 +40,5 @@ def get_ints_without_description(filename):
 if __name__ == '__main__':
 	print(get_ints_without_description(argv[1]))
 
+# Все отлично
+

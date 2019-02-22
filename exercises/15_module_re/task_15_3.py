@@ -53,3 +53,18 @@ def convert_ios_nat_to_asa(src_file, dst_file):
 if __name__ == '__main__':
 	convert_ios_nat_to_asa(argv[1], argv[2])
 
+# Все отлично
+
+# вариант решения
+def convert_ios_nat_to_asa(cisco_ios, cisco_asa):
+    regex = ('source static tcp (?P<local_ip>\S+) +'
+             '(?P<lport>\d+) +interface +\S+ (?P<outside_port>\d+)')
+    asa_template = ('object network LOCAL_{local_ip}\n'
+                    ' host {local_ip}\n'
+                    ' nat (inside,outside) static interface service tcp {lport} {outside_port}\n')
+    with open(cisco_ios) as f, open(cisco_asa, 'w') as asa_nat_cfg:
+        for match in re.finditer(regex, f.read()):
+            asa_nat_cfg.write(asa_template.format(**match.groupdict()))
+
+if __name__ == '__main__':
+    convert_ios_nat_to_asa('cisco_nat_config.txt', 'cisco_asa_config.txt')

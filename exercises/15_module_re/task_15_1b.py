@@ -46,3 +46,5 @@ def get_ip_from_cfg(filename):
 if __name__ == '__main__':
     pprint.pprint(get_ip_from_cfg(argv[1]))
 
+# Все отлично
+
