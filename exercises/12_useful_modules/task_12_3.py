@@ -23,3 +23,21 @@ Reachable    Unreachable
 
 Для этого задания нет тестов
 '''
+
+
+import tabulate
+
+def print_ip_table(reachable, unreachable):
+	to_print = {}
+	to_print['Reachable'] = reachable
+	to_print['Unreachable'] = unreachable
+	print(tabulate.tabulate(to_print, headers='keys'))
+	
+
+def main():
+	print_ip_table(['10.1.1.1', '10.1.1.2'], ['10.1.1.7', '10.1.1.8', '10.1.1.9'])
+
+
+if __name__ == '__main__':
+	main()
+
