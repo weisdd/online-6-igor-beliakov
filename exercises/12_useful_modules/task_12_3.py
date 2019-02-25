@@ -41,3 +41,11 @@ def main():
 if __name__ == '__main__':
 	main()
 
+# Все отлично
+
+# вариант решения
+def print_ip_table(reach_ip, unreach_ip):
+    table = {'Reachable': reach_ip,
+             'Unreachable': unreach_ip}
+    print(tabulate(table, headers="keys"))
+

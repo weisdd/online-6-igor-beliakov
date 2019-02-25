@@ -35,29 +35,29 @@ import ipaddress
 
 
 def convert_ranges_to_ip_list(ips, print_errors = False):
-	result = []
-	for ip in ips:
-		try: # We assume any ValueError or IndexError here is due to wrong IP format, thus skip the entry
-			if '-' in ip:
-				if ip.split('-')[-1].isdigit(): # format: 10.1.1.1-10
-					ip_start, ip_diff = ip.split('-')
-					ip_diff = int(ip_diff) - int(ip_start.split('.')[-1])
-					ip_start = ipaddress.ip_address(ip_start)
-					ip_stop = ip_start + ip_diff # 10.1.1.10-1 will be also valid
-				else: # format: 10.1.1.1-10.1.1.10
-					ip_start, ip_stop = [ipaddress.ip_address(i) for i in ip.split('-')]
-				if ip_stop < ip_start:
-					ip_start, ip_stop = ip_stop, ip_start
-				ip_current = ip_start
-				while ip_current <= ip_stop:
-					result.append(str(ip_current))
-					ip_current += 1
-			else: # format: 8.8.4.4
-				if(ipaddress.ip_address(ip)): # ValueError if it's not an IP address
-					result.append(ip)
-		except (ValueError, IndexError) as err:
-			if print_errors: print(f'{err}. Original argument: "{ip}"')
-	return result
+    result = []
+    for ip in ips:
+        try: # We assume any ValueError or IndexError here is due to wrong IP format, thus skip the entry
+            if '-' in ip:
+                if ip.split('-')[-1].isdigit(): # format: 10.1.1.1-10
+                    ip_start, ip_diff = ip.split('-')
+                    ip_diff = int(ip_diff) - int(ip_start.split('.')[-1])
+                    ip_start = ipaddress.ip_address(ip_start)
+                    ip_stop = ip_start + ip_diff # 10.1.1.10-1 will be also valid
+                else: # format: 10.1.1.1-10.1.1.10
+                    ip_start, ip_stop = [ipaddress.ip_address(i) for i in ip.split('-')]
+                if ip_stop < ip_start:
+                    ip_start, ip_stop = ip_stop, ip_start
+                ip_current = ip_start
+                while ip_current <= ip_stop:
+                    result.append(str(ip_current))
+                    ip_current += 1
+            else: # format: 8.8.4.4
+                if(ipaddress.ip_address(ip)): # ValueError if it's not an IP address
+                    result.append(ip)
+        except (ValueError, IndexError) as err:
+            if print_errors: print(f'{err}. Original argument: "{ip}"')
+    return result
 
 def main():
 	print(convert_ranges_to_ip_list(['8.8.4.4', '1.1.1.1-3', '172.21.41.128-172.21.41.132', '1.2.3',
@@ -67,3 +67,22 @@ def main():
 if __name__ == '__main__':
 	main()
 
+# Все отлично
+
+# вариант  решения без проверки корректности адреса
+def convert_ranges_to_ip_list(ip_addresses):
+    ip_list = []
+    for ip_address in ip_addresses:
+        if '-' in ip_address:
+            from_ip, to_ip = ip_address.split('-')
+            from_octet = int(from_ip.split('.')[-1])
+            network_part = '.'.join(from_ip.split('.')[:-1]) + '.'
+            if '.' in to_ip:
+                to_octet = int(to_ip.split('.')[-1])
+            else:
+                to_octet = int(to_ip)
+            ips = [network_part + str(i) for i in range(from_octet, to_octet+1)]
+            ip_list.extend(ips)
+        else:
+            ip_list.append(ip_address)
+    return ip_list
