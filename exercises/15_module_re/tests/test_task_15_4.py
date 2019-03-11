@@ -16,5 +16,5 @@ def test_function_return_value():
     return_value = task_15_4.get_ints_without_description('config_r1.txt')
     assert return_value != None, "Функция ничего не возвращает"
     assert type(return_value) == list, "Функция должна возвращать список"
-    assert return_value == correct_return_value, "Функция возвращает неправильное значение"
+    assert sorted(return_value) == sorted(correct_return_value), "Функция возвращает неправильное значение"
 
