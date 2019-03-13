@@ -40,8 +40,44 @@
 '''
 
 import glob
+import re
+import csv
 
-sh_version_files = glob.glob('sh_vers*')
-#print(sh_version_files)
 
-headers = ['hostname', 'ios', 'image', 'uptime']
+def parse_sh_version(shver):
+    # It'll return a tuple only if it can find
+    # all elements (ios, image, uptime)
+    regex = (r'Version (\S+),',
+             r'image file is "(.+)"',
+             r'uptime is (.+)\n',
+             )
+    result = []
+    for pattern in regex:
+        match = re.search(pattern, shver)
+        if match:
+            result.append(match.group(1))
+        else:
+            return
+    return tuple(result)
+
+
+def write_inventory_to_csv(data_filenames, csv_filename):
+    headers = ['hostname', 'ios', 'image', 'uptime']
+    with open(csv_filename, 'w', encoding='utf-8') as f_d:
+        writer = csv.writer(f_d)
+        writer.writerow(headers)
+        for filename in data_filenames:
+            with open(filename, 'r', encoding='utf-8') as f_s:
+                hostname = filename.replace('sh_version_', '').replace('.txt', '')
+                row = list(parse_sh_version(f_s.read()))
+                row.insert(0, hostname)
+                writer.writerow(row)
+
+
+def main():
+    sh_version_files = glob.glob('sh_vers*')
+    write_inventory_to_csv(sh_version_files, 'test.csv')
+
+
+if __name__ == '__main__':
+    main()
