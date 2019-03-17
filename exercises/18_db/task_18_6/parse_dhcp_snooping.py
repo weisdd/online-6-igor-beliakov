@@ -20,7 +20,7 @@ def add(args):
     else:
         print('Читаю информацию из файлов\n{}'.format(', '.join(
             args.filename)))
-        print('\nДобавляю данные по DHCP записях в {}'.format(args.db_file))
+        print('\nДобавляю данные по DHCP записям в {}'.format(args.db_file))
         pds.add_data(args.db_file, args.filename)
 
 
