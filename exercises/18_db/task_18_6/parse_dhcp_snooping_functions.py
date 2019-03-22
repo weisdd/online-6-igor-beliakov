@@ -98,3 +98,8 @@ def get_all_data(db_file):
     except sqlite3.IntegrityError as err:
         print(err)
     conn.close()
+
+# Все отлично
+
+# вариант решения в файле parse_dhcp_snooping_functions2.py
+
