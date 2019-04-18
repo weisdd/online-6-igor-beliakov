@@ -57,3 +57,15 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# Все отлично
+
+# вариант решения
+class Topology:
+    def __init__(self, topology_dict):
+        self.topology = {}
+        for box, neighbor in topology_dict.items():
+            if not neighbor in self.topology:
+                self.topology[box] = neighbor
+

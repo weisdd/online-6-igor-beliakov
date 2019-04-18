@@ -72,3 +72,5 @@ class Topology:
                          device not in local and device not in remote}
         if len(self.topology) == initial_size:
             print('Такого устройства нет')
+
+# Все отлично

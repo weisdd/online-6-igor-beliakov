@@ -78,3 +78,6 @@ class Topology:
             del (self.topology[remote])
         else:
             print('Такого соединения нет')
+
+
+# Все отлично

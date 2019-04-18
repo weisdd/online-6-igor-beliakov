@@ -87,3 +87,5 @@ class Topology:
             print('Cоединение с одним из портов существует')
         else:
             self.topology[local] = remote
+
+# Все отлично
