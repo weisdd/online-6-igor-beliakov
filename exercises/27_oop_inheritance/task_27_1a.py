@@ -55,3 +55,21 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# Все отлично
+
+# вариант решения
+from base_connect_class import BaseSSH
+from getpass import getpass
+
+class CiscoSSH(BaseSSH):
+    def __init__(self, **device_params):
+        params = {'username': (input, 'Введите имя пользователя: '),
+                  'password': (getpass, 'Введите пароль: '),
+                  'secret': (getpass, 'Введите пароль для режима enable: ')}
+        for param in params:
+            if not param in device_params:
+                function, question = params[param]
+                device_params[param] = function(question)
+        super().__init__(**device_params)
+        self.ssh.enable()
