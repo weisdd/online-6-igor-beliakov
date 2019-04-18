@@ -103,3 +103,6 @@ class Topology:
 
     def __add__(self, other_topology):
         return Topology({**self.topology, **other_topology.topology})
+
+# Все отлично
+
