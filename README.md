@@ -1,6 +1,9 @@
-## Задания
+# online-6-igor-beliakov
 
-Все задания по курсу находятся в каталоге exercises. Задания надо выполнять в подготовленных файлах.
+## Description
 
-Например, в разделе 04_data_structures есть задание 4.3. Чтобы выполнить его надо открыть файл exercises/04_data_structures/task_4_3.py и выполнять задание прямо в этом файле после описания задания.
+It's a mirror copy of a private repository [pyneng/online-6-igor-beliakov](https://github.com/pyneng/online-6-igor-beliakov/) that I used while studying at [Pyneng](https://natenka.github.io/pyneng-online/).
 
+Pytest code and the exercises were developed by [Natasha Samoylenko](https://github.com/pyneng).
+
+Note: the repository is made visible only for limited time.
